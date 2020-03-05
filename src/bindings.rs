@@ -55,6 +55,7 @@ pub type uintmax_t = libc::c_ulonglong;
 #[derive(Debug, Copy, Clone)]
 pub struct mp3dec_frame_info_t {
     pub frame_bytes: libc::c_int,
+    pub frame_offset: libc::c_int,
     pub channels: libc::c_int,
     pub hz: libc::c_int,
     pub layer: libc::c_int,
@@ -64,7 +65,7 @@ pub struct mp3dec_frame_info_t {
 fn bindgen_test_layout_mp3dec_frame_info_t() {
     assert_eq!(
         ::core::mem::size_of::<mp3dec_frame_info_t>(),
-        20usize,
+        24usize,
         concat!("Size of: ", stringify!(mp3dec_frame_info_t))
     );
     assert_eq!(
@@ -85,8 +86,20 @@ fn bindgen_test_layout_mp3dec_frame_info_t() {
         )
     );
     assert_eq!(
-        unsafe { &(*(::core::ptr::null::<mp3dec_frame_info_t>())).channels as *const _ as usize },
+        unsafe {
+            &(*(::core::ptr::null::<mp3dec_frame_info_t>())).frame_offset as *const _ as usize
+        },
         4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(mp3dec_frame_info_t),
+            "::",
+            stringify!(frame_offset)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<mp3dec_frame_info_t>())).channels as *const _ as usize },
+        8usize,
         concat!(
             "Offset of field: ",
             stringify!(mp3dec_frame_info_t),
@@ -96,7 +109,7 @@ fn bindgen_test_layout_mp3dec_frame_info_t() {
     );
     assert_eq!(
         unsafe { &(*(::core::ptr::null::<mp3dec_frame_info_t>())).hz as *const _ as usize },
-        8usize,
+        12usize,
         concat!(
             "Offset of field: ",
             stringify!(mp3dec_frame_info_t),
@@ -106,7 +119,7 @@ fn bindgen_test_layout_mp3dec_frame_info_t() {
     );
     assert_eq!(
         unsafe { &(*(::core::ptr::null::<mp3dec_frame_info_t>())).layer as *const _ as usize },
-        12usize,
+        16usize,
         concat!(
             "Offset of field: ",
             stringify!(mp3dec_frame_info_t),
@@ -118,7 +131,7 @@ fn bindgen_test_layout_mp3dec_frame_info_t() {
         unsafe {
             &(*(::core::ptr::null::<mp3dec_frame_info_t>())).bitrate_kbps as *const _ as usize
         },
-        16usize,
+        20usize,
         concat!(
             "Offset of field: ",
             stringify!(mp3dec_frame_info_t),
